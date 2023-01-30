@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Authcontext } from '../../Context/Authcontext';
 
 const Register = () => {
+    const navigate = useNavigate();
+    const { setUser } = useContext(Authcontext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [registerError, setRegisterError] = useState('');
     const handleRegister = (data) => {
@@ -27,6 +30,8 @@ const Register = () => {
                 if (result._id) {
 
                     toast.success('Registration Successfull')
+                    setUser(result.email);
+                    navigate('/')
                 } else {
                     setRegisterError(result.message)
                 }
@@ -55,7 +60,7 @@ const Register = () => {
                     <label className="label">
                         <span className="label-text">Email</span>
                     </label>
-                    <input type="text" placeholder="email" {...register("email", {
+                    <input type="email" placeholder="email" {...register("email", {
                         required: "Email is Required"
                     })} className="input input-bordered" />
                     {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
@@ -64,7 +69,7 @@ const Register = () => {
                     <label className="label">
                         <span className="label-text">Password</span>
                     </label>
-                    <input type="text" placeholder="password" {...register("password", {
+                    <input type="password" placeholder="password" {...register("password", {
                         required: "Password is Required"
                     })} className="input input-bordered" />
                     {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
