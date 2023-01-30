@@ -8,10 +8,10 @@ const Navbar = () => {
                 <Link to={'/'} className="btn btn-ghost normal-case text-xl">Power-Hack</Link>
             </div>
             <div className="flex-none">
-                <Link to={'/login'}>  <button className="btn btn-outline btn-secondary mr-5">
+                <Link to={'/login'}>  <button className="btn btn-outline mr-5">
                     Login
                 </button></Link>
-                <Link to={'/register'}> <button className="btn btn-outline btn-secondary">
+                <Link to={'/register'}> <button className="btn btn-outline ">
                     Register
                 </button></Link>
             </div>
